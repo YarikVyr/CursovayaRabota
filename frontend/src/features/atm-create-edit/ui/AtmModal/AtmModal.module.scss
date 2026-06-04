@@ -1,0 +1,94 @@
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  overflow: visible;
+  padding: 0 3.5rem 3.5rem;
+}
+
+.typeSwitcher {
+  width: 100%;
+  max-width: 43rem;
+  height: 5rem;
+  background: $input-bg;
+  border: 1px solid $input-border;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.7rem 1rem;
+}
+
+.fieldError {
+  border-color: $red;
+}
+
+.typeBtn,
+.typeBtnActive {
+  height: 3.6rem;
+  flex: 1;
+  border: 1px solid transparent;
+  border-radius: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-main;
+  font-size: 2rem;
+  font-weight: 600;
+  transition: $transition;
+}
+
+.typeBtn {
+  background: $white;
+  border-color: $input-border;
+  color: $black;
+
+  &:hover {
+    background-color: $hover-blue;
+  }
+}
+
+.typeBtnActive {
+  background: $bg-switcher;
+  border-color: $border-switcher;
+  color: $black;
+}
+
+.field {
+  width: 100%;
+  max-width: 43rem;
+  position: relative;
+  box-sizing: border-box;
+
+  &:nth-child(2) {
+    z-index: 3;
+  }
+
+  &:nth-child(4) {
+    z-index: 2;
+  }
+}
+
+.submitBtn {
+  width: 100%;
+  max-width: 43rem;
+  height: 5.6rem !important;
+  border-radius: 2rem !important;
+  font-size: 1.8rem;
+  letter-spacing: 0;
+  margin-top: 0;
+  text-transform: none;
+}
+
+.errorText {
+  width: 100%;
+  max-width: 43rem;
+  min-height: 1.7rem;
+  margin: -0.3rem 0 0;
+  color: $red;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.7rem;
+}

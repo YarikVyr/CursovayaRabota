@@ -1,0 +1,120 @@
+// ПЕРЕМЕННЫЕ
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-700: #374151;
+$white: #ffffff;
+
+// ГЛАВНЫЙ КОНТЕЙНЕР
+.wrapper {
+  display: flex;
+  gap: 12px;
+  height: calc(100vh - 210px);
+  min-height: 500px;
+  width: 100%;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// ОБЩИЕ СТИЛИ ПАНЕЛЕЙ
+.librarySidebar, .editorMain, .propsSidebar {
+  background: $white;
+  border: 1px solid rgba($gray-200, 0.5);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+// ШИРИНА ПАНЕЛЕЙ
+.librarySidebar { width: 288px; }
+.editorMain     { flex: 1; }     
+.propsSidebar   { width: 320px; } 
+
+// ЗАГОЛОВКИ
+.sideHeader {
+  padding: 16px;
+  border-bottom: 1px solid $gray-100;
+}
+
+.sideTitle {
+  font-weight: 700;
+  color: $gray-700;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.headerGray {
+  padding: 16px;
+  border-bottom: 1px solid $gray-100;
+  background: rgba($gray-50, 0.3);
+  font-weight: 700;
+  color: $gray-700;
+  font-size: 14px;
+}
+
+// ПОИСК
+.searchWrapper {
+  position: relative;
+  .searchIcon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $gray-400;
+  }
+}
+
+.searchInput {
+  width: 100%;
+  background: $gray-50;
+  border: 1px solid $gray-100;
+  border-radius: 6px;
+  padding: 6px 8px 6px 32px;
+  font-size: 14px;
+  outline: none;
+  &:focus { border-color: #3b82f6; }
+}
+
+// ПУСТЫЕ СОСТОЯНИЯ
+.emptyContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  opacity: 0.3;
+  font-style: italic;
+  font-size: 11px;
+  color: $gray-400;
+}
+
+.mainEmptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyIconWrapper {
+  max-width: 320px;
+  text-align: center;
+  opacity: 0.2;
+}
+
+.largeIcon {
+  margin: 0 auto 16px;
+  color: $gray-400;
+}
+
+.noElementsText {
+  color: $gray-500;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; } }

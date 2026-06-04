@@ -1,0 +1,70 @@
+// ГЛАВНЫЙ КОНТЕЙНЕР
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// БЕЛАЯ КАРТОЧКА (Габариты как у остальных вкладок, но без табличной структуры)
+.whiteCard {
+  width: 144.0rem;
+  height: auto; // Высота теперь формируется за счет точных отступов контента
+  background: $white;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border-color;
+  padding: 4.0rem 4.0rem 0 4.0rem; // Обнуляем нижний паддинг, чтобы wrapper кнопки его контролировал
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+// ЗАГОЛОВОК СТРАНИЦЫ
+.title {
+  margin: 0;
+  @include font-bold;
+  font-size: 2.4rem;
+  line-height: 100%;
+  color: $black;
+  white-space: nowrap;
+}
+
+// КОНТЕЙНЕР ДЛЯ СТИЛИЗАЦИИ КНОПКИ И ОТСТУПОВ
+.actionWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 9.9rem;     // Ровно 99px от верхнего края (от текста заголовка)
+  padding-bottom: 4.0rem; // Ровно 40px до нижнего края белого листа
+}
+
+// КНОПКА ПЕРЕХОДА (В стиле кнопок предпросмотра с других страниц)
+.btnConstructor {
+  --btn-width: 37.5rem !important; // Стандартная ширина большой кнопки
+  --btn-height: 5.0rem !important; // Стандартная высота 50px
+  --btn-radius: 1.2rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover !important;
+  }
+}
+
+// АНИМАЦИЯ ПЛАВНОГО ПОЯВЛЕНИЯ СТРАНИЦЫ
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

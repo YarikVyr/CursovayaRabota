@@ -1,0 +1,86 @@
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $input-text-gray;
+  z-index: 2;
+  pointer-events: none;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    stroke-width: 1.8;
+  }
+}
+
+.eyeButton {
+  position: absolute;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: $text-light;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  z-index: 3;
+  transition: color 0.2s;
+
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.inputField {
+  width: 100%;
+  height: 5rem;
+  background: $input-bg;
+  border: 1px solid $input-border;
+  border-radius: 1.2rem;
+  color: $black;
+  font-family: $font-main;
+  font-size: 1.6rem;
+  font-weight: 500;
+  outline: none;
+  padding: 0 1.6rem;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  z-index: 1;
+
+  &::placeholder {
+    color: $input-text-gray;
+    opacity: 1;
+  }
+
+  &:focus {
+    border: 2px solid $primary;
+  }
+
+  &.withIcon {
+    padding-left: 4.9rem;
+  }
+
+  &.withPaddingRight {
+    padding-right: 4.4rem;
+  }
+
+  &.inputError {
+    border: 2px solid $red;
+  }
+}

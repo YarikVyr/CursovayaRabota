@@ -1,0 +1,84 @@
+@mixin btn-base($w, $bg) {
+  width: $w; height: 3.1rem; background: $bg; color: $white; border: none;
+  border-radius: 1.2rem; @include font-semibold; font-size: 1.6rem; cursor: pointer; transition: $transition;
+}
+
+.header { width: 100%; display: flex; flex-direction: column; background: $white; flex-shrink: 0; z-index: 1000}
+
+.topBar {
+  height: 4.5rem; background: $bg-header; padding: 0 3rem; display: flex; align-items: center; justify-content: space-between;
+  .left { display: flex; align-items: center; gap: 3rem; }
+  .backBtn { @include btn-base(10rem, $primary); &:hover { background: $primary-hover; } }
+  .projectInfo { display: flex; align-items: center; gap: 1.5rem; font-size: 1.6rem; color: $black; @include font-semibold; .systemName { @include font-bold; } }
+  .autoSave { display: flex; align-items: center; gap: 1rem; .dot { width: 2rem; height: 2rem; background: $green; border-radius: 50%; animation: autosavePulse 2.4s ease-in-out infinite; } .saveText { @include font-medium; font-size: 1.6rem; color: $black; min-width: 25rem; } }
+}
+ 
+.mainBar {
+  height: 5rem; background: $white; padding: 0 3rem; display: flex; align-items: center; justify-content: flex-start; box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.13); position: relative;
+  .tabsArea {
+    width: 109.6rem; height: 100%; display: flex; align-items: center; flex-shrink: 0; overflow: hidden;
+  }
+  .tabsWrapper {
+    display: flex; align-items: center; width: 109.6rem; height: 100%; overflow: hidden; position: relative; flex-shrink: 0; transition: width 0.28s ease, transform 0.28s ease;
+    &.tabsWrapperCompact { width: 87.3rem; }
+    .arrowBtn { width: 4rem; height: 100%; background: none; border: none; cursor: pointer; color: $black; margin: 0; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.28s ease, color 0.2s ease; .icon { width: 3rem; height: 3rem; } &:hover { color: $primary; transform: translateX(0.2rem); } &:first-child:hover { transform: translateX(-0.2rem); } }
+    .tabsList {
+      display: flex; align-items: center; height: 100%; overflow: hidden; flex: 1;
+      .tabItemContainer {
+        display: flex; align-items: center; height: 100%; padding: 0 0.8rem; position: relative; cursor: pointer; transition: background 0.1s;
+        &:hover { background: $input-border; .tabItem { text-decoration: underline; } }
+        .tabItem { background: none; border: none; font-size: 1.6rem; @include font-semibold; color: $black; white-space: nowrap; padding: 0; cursor: pointer; line-height: 1; text-underline-offset: 0.6rem; text-decoration-thickness: 0.2rem;
+          &.activeTab { color: $primary; text-decoration: underline; }
+        }
+      }
+      .divider { width: 1px; height: 3.2rem; background: $separator-bg; flex-shrink: 0; margin: 0 0.5rem; }
+    }
+  }
+  .actions {
+    display: flex; align-items: center; gap: 1.2rem; margin-left: auto; flex-shrink: 0;
+    .statusBlock {
+      display: flex; align-items: center; gap: 1rem; .statusLabel { @include font-semibold; font-size: 1.6rem; color: $black; white-space: nowrap; flex-shrink: 0; }
+      &.statusBlockReadOnly { opacity: 0.72; }
+      .customSelect {
+        position: relative; width: 14.8rem;
+        .selectTrigger { height: 3.1rem; background: $bg-light; border: 1px solid $input-border; border-radius: 1.2rem; display: flex; align-items: center; justify-content: space-between; padding: 0 1rem; cursor: pointer;
+          &.triggerOpen { border-radius: 1.2rem 1.2rem 0 0; border-bottom: 1px solid transparent;}
+          &.selectTriggerDisabled { cursor: default; }
+          .currentStatus { @include font-semibold; font-size: 1.6rem; color: $black; white-space: nowrap; }
+          .selectIcon { width: 2rem; height: 2rem; color: $text-light; transition: 0.3s; &.iconRotate { transform: rotate(180deg); } }
+        }
+        .optionsList {
+          position: absolute; top: 3.1rem; left: 0; width: 100%; background: $bg-light; border: 1px solid $input-border; border-top: none; border-radius: 0 0 1.2rem 1.2rem; z-index: 100; overflow: hidden;
+          .optionItem { height: 3.1rem; display: flex; align-items: center; padding: 0 1rem; font-size: 1.6rem; @include font-semibold; color: $black; cursor: pointer; box-shadow: inset 0 1px 0 0 $input-border; 
+            &:hover { background: $input-hover-bg; box-shadow: inset 0 1px 0 0 $border-select, inset 0 -1px 0 0 $border-select; }
+          }
+        }
+      }
+    }
+    .saveBtn { @include btn-base(12.3rem, $green); &:hover { background: $dark-green; } &:disabled { opacity: 0.55; cursor: default; &:hover { background: $green; } } }
+    .exportBtn { @include btn-base(17.5rem, $primary); &:hover { background: $primary-hover; } }
+    .langSwitcher {
+      $switcher-width: 10rem;
+      $switcher-height: 3.7rem;
+      $slider-width: 4.1rem;
+      $slider-height: 2.7rem;
+      $padding-offset: 0.5rem;
+
+      position: relative; display: grid; grid-template-columns: repeat(2, $slider-width); column-gap: calc(#{$switcher-width} - (#{$slider-width} * 2) - (#{$padding-offset} * 2)); align-items: center; width: $switcher-width; height: $switcher-height; padding: 0 $padding-offset; background: $bg-header; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 1.2rem; box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05); box-sizing: border-box; overflow: hidden;
+      
+      .langSlider {
+        display: none;
+      }
+
+      .langBtn {
+        position: relative; z-index: 2; width: $slider-width; height: $slider-height; display: flex; align-items: center; justify-content: center; background: $button-switcher; border: 1px solid $border-button-switcher; border-radius: 0.6rem; cursor: pointer; font-family: $font-main; @include font-bold; font-size: 1.6rem; line-height: 1.9rem; color: $white; padding: 0; transition: color 0.18s, background-color 0.18s, border-color 0.18s;
+        &.activeText { background: $white; border-color: $white; color: $primary; }
+      }
+    }
+  }
+}
+
+@keyframes autosavePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.88); }
+}

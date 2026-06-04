@@ -1,0 +1,265 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1; 
+}
+
+.whiteCard {
+  width: 144.0rem;
+  height: 90.5rem;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 1px solid $border-color;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.title {
+  @include font-bold;
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+  color: $black;
+}
+
+.mainTable {
+  width: 136.0rem;
+  height: 26.0rem;
+  background: $white;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 1.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mainTableFilled {
+  height: auto;
+  min-height: 26.0rem;
+  max-height: 72.1rem;
+}
+
+.tableHeader {
+  height: 5.0rem;
+  background: $bg-light;
+  border-bottom: 1px solid $input-border;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerLabel {
+  position: absolute;
+  top: 1.3rem; 
+  @include font-semibold; 
+  font-size: 2.0rem; 
+  line-height: 100%;
+  color: $black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; // Не дает тексту переноситься
+}
+
+// ТВОИ ТОЧНЫЕ КООРДИНАТЫ
+.labelRev    { left: 2.0rem;   width: 4.2rem;  height: 2.4rem; }
+.labelDesc   { left: 28.0rem;  width: 21.3rem; height: 2.4rem; }
+.labelReason { left: 86.7rem;  width: 8.7rem;  height: 2.4rem; }
+.labelDate   { left: 122.0rem; width: 4.9rem;  height: 2.4rem; }
+
+.scrollContainer {
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.tableContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.revisionRow {
+  position: relative;
+  width: 100%;
+  height: 5.4rem;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  [readonly] {
+    pointer-events: none;
+  }
+
+  .revNumberBlock {
+    border-color: $input-border;
+    box-shadow: none;
+    background: $bg-light; 
+  }
+
+  [class*="inputField"] {
+    border-color: $input-border;
+    box-shadow: none;
+    background: $white;
+  }
+
+  &.activeRevision {
+    .revNumberBlock {
+       border-color: $primary;
+       box-shadow: 0 0 0 0.1rem $primary; 
+       background: $bg-light; 
+    }
+
+    [class*="inputField"] {
+      border-color: $primary;
+      box-shadow: 0 0 0 0.1rem $primary; 
+      background: $bg-light;
+      
+      &:focus {
+        box-shadow: 0 0 0 0.1rem $primary;
+      }
+    }
+  }
+
+  &:hover .rowHoverBg {
+    background-color: $input-hover-bg;
+  }
+}
+
+.rowHoverBg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: background-color 0.2s;
+}
+
+.rowContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.revNumberBlock {
+  width: 7.2rem;
+  height: 5.0rem;
+  background: $bg-light;
+  border: 0.1rem solid $input-border; 
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.revText {
+  @include font-medium;
+  font-size: 1.6rem;
+  color: $black;
+}
+
+.separator {
+  width: 0.1rem;
+  height: 5.4rem;
+  background: $separator-bg;
+  margin: 0 1.0rem;
+  flex-shrink: 0;
+}
+
+.descInput   { flex-shrink: 0; width: 56.7rem; [class*="inputField"] { width: 100% !important; height: 5.0rem !important; } }
+.reasonInput { flex-shrink: 0; width: 43.9rem; [class*="inputField"] { width: 100% !important; height: 5.0rem !important; } }
+.dateInput   { flex-shrink: 0; width: 18.9rem; [class*="inputField"] { width: 100% !important; height: 5.0rem !important; } }
+
+.dateInput {
+  [class*="inputField"] {
+    text-align: center;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.inputError {
+  [class*="inputField"] {
+    border-color: $red !important;
+    box-shadow: 0 0 0 1px $red !important;
+    animation: shake 0.2s ease-in-out 0s 2;
+  }
+}
+
+.tableFooter {
+  height: 8.4rem;
+  background: $bg-light;
+  border-top: 1px solid $input-border;
+  display: flex;
+  align-items: center;
+  padding-left: 37.1rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.footerBtns {
+  display: flex;
+  gap: 1.0rem;
+}
+
+.btnAdd {
+  --btn-width: 25.6rem !important;
+  --btn-height: 5.8rem !important;
+  @include font-semibold;
+  font-size: 2.0rem !important;
+}
+
+.btnRemove {
+  --btn-width: 35.2rem !important;
+  --btn-height: 5.8rem !important;
+  @include font-semibold;
+  font-size: 2.0rem !important;
+  background-color: $red !important;
+  color: $white !important;
+  opacity: 1 !important;
+  cursor: pointer !important;
+  border: none !important;
+
+  &:hover { 
+    background-color: $dark-red !important;
+  }
+}
+
+.previewWrapper {
+  position: absolute;
+  bottom: 2.0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btnPreview {
+  --btn-width: 37.5rem !important;
+  --btn-height: 5.0rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+}

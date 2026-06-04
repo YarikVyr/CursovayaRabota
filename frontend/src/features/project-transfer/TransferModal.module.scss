@@ -1,0 +1,124 @@
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0 3.5rem 3.0rem 3.5rem;
+  align-items: center;
+}
+
+.inputsStack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0; 
+}
+
+.inputLabel {
+  display: block;
+  @include font-semibold;
+  font-size: 1.8rem;
+  line-height: 100%;
+  color: $black;
+  margin-bottom: 0.5rem; 
+  text-align: left;
+  width: 100%;
+
+  &:nth-of-type(2) {
+    margin-top: 1.0rem; 
+  }
+
+  &.noMarginTop {
+    margin-top: 0 !important;
+  }
+}
+
+.fieldError {
+  @include font-semibold;
+  font-size: 1.4rem;
+  line-height: 100%;
+  color: $red;
+  text-align: left;
+  width: 100%;
+  margin-top: 0.5rem;     
+  margin-bottom: 1.0rem;  
+}
+
+.globalError {
+  @include font-semibold;
+  font-size: 1.4rem;
+  line-height: 100%;
+  color: $red;
+  text-align: center;
+  width: 100%;
+  margin-top: 1.3rem;    
+  margin-bottom: 1.3rem;  
+}
+
+.customInputWrapper {
+  width: 100%;
+  box-sizing: border-box;
+
+  &:global(.hasError) {
+    border: 0.1rem solid $red;
+    box-shadow: 0 0 0 0.1rem $red;
+    border-radius: 1.2rem; 
+    
+    input, .transferInput {
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+  }
+}
+
+.transferInput {
+  height: 5.0rem;
+  border-radius: 1.2rem;
+  background: $input-bg;
+  border: 1px solid $input-border;
+  font-size: 1.6rem;
+  @include font-medium;
+  color: $black; 
+  transition: border 0.2s, box-shadow 0.2s;
+  letter-spacing: 0;
+  outline: none;
+  text-shadow: none;
+  width: 100%;
+
+  --hover-shadow: none !important;
+
+  &:focus {
+    box-shadow: 0 0 0 2px $primary;
+    color: $black; 
+  }
+
+  &:hover:not(:disabled) {
+    text-shadow: none; 
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 2.0rem;
+  margin-top: 3.7rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.confirmBtn, .cancelBtn {
+  width: 15.0rem;
+  height: 5.0rem;
+  border-radius: 2.0rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $white;
+  border: none;
+  letter-spacing: 0;
+  cursor: pointer;
+}
+
+.confirmBtn {
+  background-color: $green;
+  &:hover {
+    background-color: $dark-green !important;
+  }
+}

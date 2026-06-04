@@ -1,0 +1,23 @@
+.scrollContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+
+  &::-webkit-scrollbar {
+    width: 1.0rem; 
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg-scrollbar; 
+    border-radius: 1.2rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $bg-scrollbar-thumb;
+    border: 1px solid $border-scrollbar;
+    border-radius: 1.2rem;
+    min-height: 4.0rem; 
+  }
+}

@@ -1,0 +1,211 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.whiteCard {
+  width: 144.0rem;
+  height: 90.5rem;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 1px solid $border-color;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.title {
+  @include font-bold;
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+  color: $black;
+}
+
+.mainTable {
+  width: 136.0rem;
+  height: 26.0rem;
+  max-height: 72.1rem; // Скролл включится при достижении этой высоты
+  background: $white;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  border-radius: 1.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.mainTableFilled {
+  height: auto;
+  min-height: 26.0rem;
+  max-height: 72.1rem;
+}
+
+.mainTable:not(.mainTableFilled) {
+  .scrollContainer {
+    overflow-y: hidden;
+  }
+}
+
+.tableHeader {
+  height: 5.0rem;
+  background: $bg-light;
+  border-bottom: 1px solid $input-border;
+  flex-shrink: 0;
+}
+
+// Стили для внешнего компонента Scrollbar в контексте этой таблицы
+.scrollContainer {
+  flex-grow: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableContent {
+  // 20px от верха таблицы (под серой плашкой) до контента
+  padding: 2.0rem 4.0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emptyWrapper {
+  width: 100%;
+  height: 12.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6.1rem;    // 61px сверху
+  padding-bottom: 4.1rem; // 41px снизу
+}
+
+.emptyText {
+  @include font-semibold;
+  font-size: 2.0rem;
+  line-height: 100%;
+  color: $black;
+}
+
+.emptyWrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.companiesList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; // 15px между блоками компаний
+}
+
+.companyBlock {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem; // 15px до представителей
+}
+
+.inputLabel {
+  display: block;
+  @include font-semibold;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: $black;
+}
+
+.inputRow {
+  display: flex;
+  align-items: center; // Центровка крестика по оси инпута
+  gap: 1.2rem;
+}
+
+.repRowContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.0rem;
+  margin-bottom: 1.5rem; 
+}
+
+.repFieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+// РАЗМЕРЫ ИНПУТОВ
+.companyInput { :global(.inputField) { width: 127.6rem !important; height: 5.0rem !important; } }
+.roleInput { :global(.inputField) { width: 47.0rem !important; height: 5.0rem !important; } }
+.nameInput { :global(.inputField) { width: 18.0rem !important; height: 5.0rem !important; } }
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $black;
+  
+  // Уменьшенный крестик 20x20
+  width: 2.0rem;
+  height: 2.0rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition;
+  padding: 0;
+
+  &:hover { color: $red; }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btnAddRep {
+  --btn-width: 26.3rem !important;
+  --btn-height: 3.1rem !important;
+  @include font-semibold;
+  font-size: 1.6rem;
+  background-color: $primary !important;
+  color: $white;
+}
+
+.tableFooter {
+  height: 8.4rem;
+  background: $bg-light;
+  border-top: 1px solid $input-border;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btnAdd {
+  --btn-width: 25.6rem !important;
+  --btn-height: 5.8rem !important;
+  font-size: 2.0rem;
+}
+
+.previewWrapper {
+  position: absolute;
+  bottom: 2.0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btnPreview {
+  --btn-width: 37.5rem !important;
+  --btn-height: 5.0rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  line-height: 100%;
+}

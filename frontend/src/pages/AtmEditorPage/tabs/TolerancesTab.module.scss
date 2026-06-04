@@ -1,0 +1,254 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// БЕЛАЯ КАРТОЧКА (Основной контейнер по размерам конструктора)
+.whiteCard {
+  width: 144.0rem;
+  min-height: 45.0rem;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border-color;
+  padding: 4.0rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 9.0rem;
+}
+
+// ЗАГОЛОВОК СТРАНИЦЫ
+.title {
+  position: absolute;
+  top: 4.0rem;
+  left: 4.0rem;
+  width: 35.5rem;
+  height: 2.9rem;
+  margin: 0;
+  @include font-bold;
+  font-size: 2.4rem;
+  line-height: 100%;
+  color: $black;
+  white-space: nowrap;
+}
+
+// ГЛАВНАЯ ТАБЛИЦА ДОПУСКОВ
+.mainTable {
+  width: 136.0rem;
+  min-height: 26.0rem;
+  max-height: 72.1rem;
+  background: $white;
+  border: 0.1rem solid rgba(229, 231, 235, 0.5); 
+  border-radius: 1.2rem;
+  box-shadow: 0px 0.1rem 0.2rem 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: visible; 
+  margin-top: 5.4rem; 
+  position: relative;
+}
+
+// ШАПКА ТАБЛИЦЫ
+.tableHeader {
+  height: 5.0rem;
+  background: $bg-light;
+  border-bottom: 0.1rem solid $input-border;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerLabel {
+  position: absolute;
+  top: 1.3rem; 
+  @include font-semibold; 
+  font-size: 2.0rem; 
+  line-height: 100%;
+  color: $black;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.labelParam     { left: 2.0rem;  width: 15.0rem; height: 2.4rem; }
+.labelTolerance { left: 32.1rem; width: 15.0rem; height: 2.4rem; }
+.labelNominal   { left: 56.9rem; width: 15.0rem; height: 2.4rem; }
+.labelUnit      { left: 80.5rem; width: 15.0rem; height: 2.4rem; }
+
+.scrollContainer {
+  flex-grow: 1;
+  overflow-y: auto !important;   
+  overflow-x: visible !important; 
+  position: relative;
+  width: 100%;
+}
+
+.tableContent {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.rowsList {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding-bottom: 1.2rem; 
+}
+
+// СТРОКА ТАБЛИЦЫ 
+.tolerancesRow { 
+  position: relative;
+  width: 100%;
+  height: 5.4rem;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+
+  &:hover,
+  &:focus-within,
+  &:has([class*="isOpen"]) { 
+    z-index: 10;
+  }
+
+  [class*="inputField"] {
+    border-color: $input-border;
+    box-shadow: none;
+    background: $bg-light;
+    height: 5.0rem;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
+    color: $black;
+  }
+
+  &:hover:not(:has([class*="optionsList"]:empty:hover)) {
+    background-color: $input-hover-bg;
+  }
+}
+
+.rowContent {
+  position: relative;
+  z-index: 2; 
+  display: flex;
+  align-items: center;
+  padding-left: 1.1rem; 
+  overflow: visible;
+}
+
+// ВЕРТИКАЛЬНЫЕ РАЗДЕЛИТЕЛИ (Ширина 1px, отступы по 10px с каждой стороны)
+.separator {
+  width: 0.1rem;
+  height: 5.4rem;
+  background: $separator-bg; 
+  margin: 0 1.0rem; 
+  flex-shrink: 0;
+}
+
+// ТОЧНЫЕ ШИРИНЫ ПОЛЕЙ ИЗ ТВОЕГО МАКЕТА
+.paramInput      { flex-shrink: 0; width: 28.0rem; }
+.toleranceSelect { flex-shrink: 0; width: 22.7rem; }
+.nominalInput    { flex-shrink: 0; width: 21.5rem; }
+.unitSelect      { flex-shrink: 0; width: 21.5rem; }
+
+// КНОПКА КРЕСТИКА УДАЛЕНИЯ (Человеческое позиционирование за полями)
+.deleteBtn {
+  margin-left: 2.0rem; // Стандартный аккуратный отступ от поля Ед.изм, как на других страницах
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $black !important; 
+  width: 2.0rem;        
+  height: 2.0rem;        
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 1;    
+  transition: all 0.2s ease; 
+  flex-shrink: 0;
+
+  &:disabled {
+    display: none !important; // Скрываем в режиме просмотра ревизий
+  }
+
+  &:hover { 
+    color: $red !important; 
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ПОДВАЛ ТАБЛИЦЫ С КНОПКОЙ ДОБАВЛЕНИЯ
+.tableFooter {
+  height: 8.4rem;
+  background: $bg-light;
+  border-top: 0.1rem solid $input-border;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+// КНОПКА ДОБАВЛЕНИЯ (Ширина 281px, высота 58px)
+.btnAdd {
+  --btn-width: 28.1rem !important;
+  --btn-height: 5.8rem !important;
+  --btn-radius: 1.2rem !important;
+  @include font-semibold;
+  font-size: 2.0rem !important;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover !important;
+  }
+}
+
+// КНОПКА ПРЕДПРОСМОТРА В САМОМ НИЗУ СТРАНИЦЫ
+.previewWrapper {
+  position: absolute;
+  bottom: 2.0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btnPreview {
+  --btn-width: 37.5rem !important;
+  --btn-height: 5.0rem !important;
+  --btn-radius: 1.2rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover !important;
+  }
+}
+
+// АНИМАЦИЯ ПЛАВНОГО ПОЯВЛЕНИЯ СТРАНИЦЫ
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

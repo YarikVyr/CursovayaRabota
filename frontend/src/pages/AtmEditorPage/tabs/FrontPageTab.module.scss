@@ -1,0 +1,203 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  height: auto;
+}
+
+.whiteCard {
+  width: 144rem;
+  min-height: 90.5rem;
+  box-sizing: border-box;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 1px solid rgba($input-border, 0.5);
+  box-shadow: 0 0.1rem 0.2rem rgba($black, 0.05);
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.customSelectBorder {
+  & > div { 
+    border-width: 0.1rem; 
+    border-color: $input-border;
+  }
+
+  :global(.selectContainer) {
+    border-width: 1px;
+    height: 5.0rem;
+  }
+}
+
+.revSelectBlack {
+  position: relative;
+  z-index: 5;
+
+  :global([class*="selectValue"]) {
+    color: $black !important;
+  }
+
+  :global(.selectOptions) {
+    top: 100%;
+    margin-top: 0;
+    border-radius: 0 0 1.2rem 1.2rem;
+    overflow: hidden; 
+  }
+
+  :global(.selectOption):first-child {
+    border-radius: 0;
+  }
+}
+
+.mainTitle {
+  @include font-bold;
+  font-size: 2.4rem;
+  line-height: 100%;
+  color: $black;
+  margin: 0 0 2.5rem 0;
+  width: 33.5rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader {
+  width: 100%; 
+  height: 3.6rem;
+  background: $bg-title;
+  border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1.6rem;
+  @include font-bold;
+  font-size: 2.0rem;
+  color: $white;
+  margin-bottom: 2.5rem; 
+}
+
+// Сетки
+.grid3Cols {
+  display: grid;
+  grid-template-columns: repeat(3, 43rem);
+  gap: 3.5rem;
+}
+
+.documentGrid {
+  display: grid;
+  grid-template-columns: 43rem 15.9rem; 
+  gap: 2.5rem;
+  position: relative;
+}
+
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 25rem);
+  justify-content: start;
+  gap: 2.5rem;
+}
+
+.fieldItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  label {
+    @include font-semibold;
+    font-size: 1.8rem;
+    color: $black;
+  }
+
+  &:focus-within {
+    z-index: 10;
+  }
+}
+
+.docLeftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.logoFieldItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+
+  label {
+    @include font-semibold;
+    font-size: 1.8rem;
+  }
+}
+
+.uploadRow {
+  display: flex;
+  align-items: center;
+  gap: 1.0rem;
+  width: fit-content;
+}
+
+.logoBox {
+  width: 10.0rem;
+  height: 10.0rem;
+  flex-shrink: 0;
+  background: $bg-light;
+  border: 1px solid $input-border;
+  border-radius: 1.2rem;
+  display: flex;         
+  align-items: center;     
+  justify-content: center;   
+  overflow: hidden;
+  position: relative;       
+}
+
+.logoTextSpan {
+  color: $input-text-gray;
+  font-size: 1.6rem;
+  @include font-medium;
+  text-align: center;
+  pointer-events: none;    
+  line-height: 1.2;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    
+  display: block; 
+}
+
+.btnUpload {
+  --btn-width: 10.1rem !important;
+  --btn-height: 5.0rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  padding: 0 1rem !important;
+}
+
+.previewWrapperInside {
+  display: flex;
+  justify-content: center; 
+  width: 100%;           
+  margin-top: 4.3rem;   
+  padding-bottom: 2rem;
+}
+
+.btnPreview {
+  width: 37.5rem !important;
+  height: 5.0rem !important;
+  @include font-medium;
+  flex-shrink: 0;
+}
+
+.revisionWrapper {
+  width: 15.9rem;
+  height: 5.0rem;
+}

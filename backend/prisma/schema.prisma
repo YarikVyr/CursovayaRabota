@@ -1,0 +1,253 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AtmCodeType {
+  ATA
+  FSTD
+}
+
+enum AtmStatus {
+  DRAFT
+  IN_PROGRESS
+  IN_REVIEW
+  READY
+}
+
+enum LibraryItemType {
+  READONLY
+  EDITABLE
+}
+
+model User {
+  id           String @id @default(uuid())
+  fullName     String
+  login        String @unique
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdProjects Project[] @relation("ProjectCreator")
+  createdAtms     Atm[]     @relation("AtmCreator")
+
+  sharedProjectsSent     ProjectShare[] @relation("ShareSender")
+  sharedProjectsReceived ProjectShare[] @relation("ShareReceiver")
+
+  createdRevisions AtmRevision[] @relation("RevisionCreator")
+  auditLogs        AuditLog[]
+}
+
+model AdminUser {
+  id           String @id @default(uuid())
+  login        String @unique
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id   String @id @default(uuid())
+  name String
+
+  aircraftTypeId String
+  trainerTypeId  String
+  rmiTypeId      String
+
+  creatorId String
+  creator   User   @relation("ProjectCreator", fields: [creatorId], references: [id])
+
+  isDeleted Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  aircraftType DictionaryAircraftType @relation(fields: [aircraftTypeId], references: [id])
+  trainerType  DictionaryTrainerType  @relation(fields: [trainerTypeId], references: [id])
+  rmiType       DictionaryRmiType      @relation(fields: [rmiTypeId], references: [id])
+
+  atms   Atm[]
+  shares ProjectShare[]
+}
+
+model ProjectShare {
+  id String @id @default(uuid())
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id])
+
+  sharedByUserId String
+  sharedByUser   User   @relation("ShareSender", fields: [sharedByUserId], references: [id])
+
+  sharedWithUserId String
+  sharedWithUser   User   @relation("ShareReceiver", fields: [sharedWithUserId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([projectId, sharedWithUserId])
+}
+
+model Atm {
+  id String @id @default(uuid())
+
+  projectId String
+  project   Project @relation(fields: [projectId], references: [id])
+
+  creatorId String
+  creator   User   @relation("AtmCreator", fields: [creatorId], references: [id])
+
+  codeType  AtmCodeType
+  codeValue String
+
+  systemId String
+  system   DictionaryAtmSystem @relation(fields: [systemId], references: [id])
+
+  subsystemId String?
+  subsystem   DictionaryAtmSubsystem? @relation(fields: [subsystemId], references: [id])
+
+  status    AtmStatus @default(DRAFT)
+  isDeleted Boolean   @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  revisions AtmRevision[]
+}
+
+model AtmRevision {
+  id String @id @default(uuid())
+
+  atmId String
+  atm   Atm    @relation(fields: [atmId], references: [id], onDelete: Cascade)
+
+  revisionNumber Int
+  description    String
+  reason         String?
+  revisionDate   DateTime
+
+  snapshot Json
+
+  isActive Boolean @default(false)
+
+  createdById String
+  createdBy   User   @relation("RevisionCreator", fields: [createdById], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([atmId, revisionNumber])
+}
+
+model DictionaryAircraftType {
+  id   String @id @default(uuid())
+  name String @unique
+
+  projects Project[]
+}
+
+model DictionaryTrainerType {
+  id   String @id @default(uuid())
+  name String @unique
+
+  projects Project[]
+}
+
+model DictionaryRmiType {
+  id   String @id @default(uuid())
+  name String @unique
+
+  projects Project[]
+}
+
+model DictionaryAtmSystem {
+  id       String      @id @default(uuid())
+  codeType AtmCodeType
+  code     String
+  name     String
+
+  atms       Atm[]
+  subsystems DictionaryAtmSubsystem[]
+
+  @@unique([codeType, code])
+}
+
+model DictionaryAtmSubsystem {
+  id String @id @default(uuid())
+
+  systemId String
+  system   DictionaryAtmSystem @relation(fields: [systemId], references: [id])
+
+  name String
+
+  atms Atm[]
+  
+  @@unique([systemId, name])
+}
+
+model DictionaryContract {
+  id   String @id @default(uuid())
+  name String @unique
+}
+
+model DictionaryEquipment {
+  id    String  @id @default(uuid())
+  name  String
+  model String?
+}
+
+model DictionaryTolerance {
+  id   String @id @default(uuid())
+  name String @unique
+}
+
+model DictionaryUnit {
+  id   String @id @default(uuid())
+  name String @unique
+}
+
+model DictionaryAbbreviation {
+  id           String @id @default(uuid())
+  abbreviation String @unique
+  description  String
+}
+
+model EditorLibraryItem {
+  id String @id @default(uuid())
+
+  type                 LibraryItemType
+  title                String
+  description          String?
+  content              Json?
+  estimatedTimeSeconds Int?
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id String @id @default(uuid())
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
+  action   String
+  entity   String
+  entityId String?
+  details  Json?
+
+  createdAt DateTime @default(now())
+}
+
+model SystemSetting {
+  id    String @id @default(uuid())
+  key   String @unique
+  value Json
+
+  updatedAt DateTime @updatedAt
+}

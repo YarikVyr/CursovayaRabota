@@ -1,0 +1,263 @@
+// ГЛАВНЫЙ КОНТЕЙНЕР
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// БЕЛАЯ КАРТОЧКА (Основной контейнер по размерам конструктора)
+.whiteCard {
+  width: 144.0rem;
+  height: 90.5rem;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border-color;
+  padding: 4.0rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+// ЗАГОЛОВОК СТРАНИЦЫ
+.title {
+  position: absolute;
+  top: 4.0rem;
+  left: 4.0rem;
+  width: 35.5rem;
+  height: 2.9rem;
+  margin: 0;
+  @include font-bold;
+  font-size: 2.4rem;
+  line-height: 100%;
+  color: $black;
+  white-space: nowrap;
+}
+
+// ГЛАВНАЯ ТАБЛИЦА АББРЕВИАТУР
+.mainTable {
+  width: 136.0rem;
+  min-height: 26.0rem; // Начальная аккуратная высота, когда строк мало
+  max-height: 72.1rem; // Ограничиваем жестко по макету для появления скролла
+  height: auto;        // Позволяет таблице расти динамически до лимита max-height
+  background: $white;
+  border: 0.1rem solid rgba(229, 231, 235, 0.5); 
+  border-radius: 1.2rem;
+  box-shadow: 0px 0.1rem 0.2rem 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: visible;   // Выпадающие списки летят поверх границ таблицы
+  margin-top: 5.4rem; 
+  position: relative;
+}
+
+// ШАПКА ТАБЛИЦЫ
+.tableHeader {
+  height: 5.0rem;
+  background: $bg-light;
+  border-bottom: 0.1rem solid $input-border;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+// СТИЛИЗАЦИЯ ЗАГОЛОВКОВ
+.headerLabel {
+  position: absolute;
+  top: 1.3rem; 
+  @include font-semibold; 
+  font-size: 2.0rem; 
+  line-height: 100%;
+  color: $black;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+// Координаты заголовков колонок над полями
+.labelAbbr { left: 2.0rem;  width: 17.4rem; height: 2.4rem; }
+.labelDesc { left: 32.2rem; width: 25.0rem; height: 2.4rem; }
+
+// КОНТЕЙНЕРЫ ДЛЯ СКРОЛЛА
+.scrollContainer {
+  flex-grow: 1;
+  // Автоматически вычитаем высоту шапки (5rem) и подвала (8.4rem)
+  height: calc(100% - 13.4rem); 
+  overflow-y: auto !important;   // Скролл включится сам при достижении лимита таблицы
+  overflow-x: visible !important; // Предотвращаем обрезку выпадающих окон по бокам
+  position: relative;
+  width: 100%;
+}
+
+.tableContent {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.rowsList {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  padding-bottom: 1.2rem; // Твой проверенный временем буферный отступ
+}
+
+// СТРОКА ТАБЛИЦЫ 
+.abbreviationsRow {
+  position: relative;
+  width: 100%;
+  height: 5.4rem;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+
+  &:hover,
+  &:focus-within,
+  &:has([class*="isOpen"]) { 
+    z-index: 10;
+  }
+
+  [class*="inputField"] {
+    border-color: $input-border;
+    box-shadow: none;
+    background: $bg-light;
+    height: 5.0rem;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
+    color: $black;
+  }
+
+  &:hover:not(:has([class*="optionsList"]:empty:hover)) {
+    background-color: $input-hover-bg;
+  }
+}
+
+.rowContent {
+  position: relative;
+  z-index: 2; 
+  display: flex;
+  align-items: center;
+  padding-left: 1.1rem; 
+  overflow: visible;
+}
+
+// ВЕРТИКАЛЬНЫЙ РАЗДЕЛИТЕЛЬ (Ширина 1px, отступы по 10px)
+.separator {
+  width: 0.1rem;
+  height: 5.4rem;
+  background: $separator-bg; 
+  margin: 0 1.0rem; 
+  flex-shrink: 0;
+}
+
+// ТОЧНЫЕ РАЗМЕРЫ ПОЛЕЙ ИЗ ТВОЕГО ТЕХЗАДАНИЯ
+.abbrSelect { 
+  flex-shrink: 0; 
+  width: 28.0rem; // width: 280px
+}
+
+.descInput { 
+  flex-shrink: 0; 
+  width: 89.2rem; // width: 892px
+}
+
+// КНОПКА КРЕСТИКА УДАЛЕНИЯ (Всегда видна, отступ 10px)
+.deleteBtn {
+  margin-left: 1.0rem; // Ровно 10px честного отступа от поля расшифровки
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $black !important; 
+  width: 2.0rem;        
+  height: 2.0rem;        
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 1;    
+  transition: color 0.2s ease; 
+  flex-shrink: 0;
+
+  &:disabled {
+    display: none !important;
+  }
+
+  &:hover { 
+    color: $red !important; 
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ПОДВАЛ ТАБЛИЦЫ С КНОПКОЙ ДОБАВЛЕНИЯ ПО ЦЕНТРУ
+.tableFooter {
+  height: 8.4rem;
+  background: $bg-light;
+  border-top: 0.1rem solid $input-border;
+  display: flex;
+  align-items: center;
+  justify-content: center; // Выравнивание кнопки строго по центру
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+// КНОПКА ДОБАВЛЕНИЯ АББРЕВИАТУРЫ
+.btnAdd {
+  --btn-width: 28.1rem;
+  --btn-height: 5.8rem;
+  --btn-radius: 1.2rem !important;
+  @include font-semibold;
+  font-size: 2.0rem !important;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover !important;
+  }
+}
+
+// КНОПКА ПРЕДПРОСМОТРА В САМОМ НИЗУ СТРАНИЦЫ
+.previewWrapper {
+  position: absolute;
+  bottom: 2.0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btnPreview {
+  --btn-width: 37.5rem !important;
+  --btn-height: 5.0rem !important;
+  --btn-radius: 1.2rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover !important;
+  }
+}
+
+// АНИМАЦИЯ ПЛАВНОГО ПОЯВЛЕНИЯ
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

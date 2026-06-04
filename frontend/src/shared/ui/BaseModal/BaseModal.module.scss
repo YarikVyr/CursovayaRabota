@@ -1,0 +1,67 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($black, 0.6);
+  backdrop-filter: blur(0.4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.6rem;
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 50rem;
+  background-color: $white;
+  border-radius: 2rem;
+  position: relative;
+  padding: 0;
+  animation: modalAppear 0.2s ease-out;
+  overflow: visible;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  background: none;
+  border: none;
+  color: $black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+  z-index: 10;
+
+  &:hover {
+    color: $red;
+  }
+}
+
+.modalTitle {
+  width: 100%;
+  color: $black;
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 4rem;
+  padding-top: 3rem;
+  text-align: center;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

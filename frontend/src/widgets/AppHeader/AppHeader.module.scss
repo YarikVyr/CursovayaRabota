@@ -1,0 +1,204 @@
+.header {
+  width: 100%;
+  height: 7.8rem;
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  box-shadow: 0 0.4rem 0.6rem -0.1rem rgba($black, 0.1);
+  position: relative;
+  z-index: 100;
+}
+
+.logoLink {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo {
+  min-width: 20.4rem;
+  height: 2.4rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: $white;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+
+.searchBar {
+  flex: 0 1 67.2rem;
+  margin: 0 2rem;
+}
+
+.searchContainer {
+  width: 100%;
+  height: 3.7rem;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $text-gray;
+  z-index: 2;
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  background: $white;
+  border: none;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.2rem 0.4rem rgba($black, 0.05);
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  font-weight: 700;
+  outline: none;
+  padding: 0 1.2rem 0 3.8rem;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+.langSwitcher {
+  $switcher-width: 10rem;
+  $switcher-height: 3.7rem;
+  $slider-width: 4.1rem;
+  $slider-height: 2.7rem;
+  $padding-offset: 0.5rem;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, $slider-width);
+  column-gap: calc(#{$switcher-width} - (#{$slider-width} * 2) - (#{$padding-offset} * 2));
+  align-items: center;
+  width: $switcher-width;
+  height: $switcher-height;
+  padding: 0 $padding-offset;
+  background: rgba($white, 0.1);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba($black, 0.05);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  &[data-lang='ru'] .langSlider {
+    transform: translateX(0);
+  }
+
+  &[data-lang='en'] .langSlider {
+    transform: translateX(calc(#{$switcher-width} - #{$slider-width} - (#{$padding-offset} * 2)));
+  }
+}
+
+.langSlider {
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  left: 0.5rem;
+  width: 4.1rem;
+  height: 2.7rem;
+  background-color: $white;
+  border-radius: 0.6rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.langBtn,
+.langBtnActive {
+  position: relative;
+  z-index: 2;
+  width: 4.1rem;
+  height: 2.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-family: $font-main;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.9rem;
+  padding: 0;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.langBtnActive {
+  color: $primary;
+}
+
+.userBadge {
+  width: 36rem;
+  height: 3.7rem;
+  background: rgba($white, 0.1);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 0.4rem rgba($black, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 1.6rem;
+}
+
+.userName {
+  color: $white;
+  font-size: 1.4rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.logoutBtn {
+  width: 8.1rem;
+  height: 3.7rem;
+  background-color: $white;
+  border: none;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.2rem 0.4rem rgba($black, 0.05);
+  color: $primary;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  transition: $transition;
+
+  &:hover {
+    background-color: $hover-grey;
+    color: $primary-hover;
+  }
+}
+
+@media (max-width: 1280px) {
+  .header {
+    padding: 0 2.4rem;
+  }
+
+  .searchBar {
+    flex-basis: 42rem;
+  }
+
+  .headerActions {
+    gap: 1.2rem;
+  }
+
+  .userBadge {
+    width: 24rem;
+  }
+}

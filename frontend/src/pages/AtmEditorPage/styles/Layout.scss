@@ -1,0 +1,223 @@
+// ПЕРЕМЕННЫЕ
+$blue-primary: #1D4ED8;
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-900: #111827;
+$white: #ffffff;
+$bg-color: #f8f9fa;
+
+// ОБЕРТКА ВСЕЙ СТРАНИЦЫ
+.atm-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: $bg-color;
+  overflow: hidden;
+}
+
+// ШАПКА
+.atm-header-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-shrink: 0;
+
+  .header-top-bar {
+    background: #f8fafc;
+    height: 34px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray-200;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      
+      .breadcrumb-item {
+        &.link {
+          color: $gray-500;
+          cursor: pointer;
+          &:hover { color: $blue-primary; text-decoration: underline; }
+        }
+        &.current {
+          color: $gray-900;
+          font-weight: 600;
+        }
+      }
+      .separator { color: $gray-300; }
+    }
+
+    .nav-right {
+      .save-status {
+        font-size: 11px;
+        display: flex;
+        gap: 4px;
+        .label { color: $gray-400; }
+        .time { color: $gray-600; font-weight: 600; }
+      }
+    }
+  }
+
+  .header-main-bar {
+    background: $white;
+    height: 46px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $gray-200;
+
+    .tabs-container {
+      display: flex;
+      height: 100%;
+      .tab-btn {
+        background: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        padding: 0 14px;
+        font-size: 12px;
+        font-weight: 700;
+        color: $gray-400;
+        cursor: pointer;
+        height: 100%;
+        transition: 0.2s;
+        &:hover { color: $gray-600; }
+        &.active {
+          color: $blue-primary;
+          border-bottom-color: $blue-primary;
+        }
+      }
+    }
+
+    .actions-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .btn-secondary, .btn-primary {
+        padding: 6px 18px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-secondary {
+        background: $white;
+        border: 1px solid $gray-300;
+        color: $gray-700;
+        &:hover { background: $gray-50; }
+      }
+
+      .btn-primary {
+        background: $blue-primary;
+        color: $white;
+        border: none;
+        &:hover { background: #1a44c2; }
+      }
+
+      .lang-toggle {
+        display: flex;
+        background: $gray-100;
+        padding: 2px;
+        border-radius: 6px;
+        button {
+          border: none;
+          padding: 3px 8px;
+          font-size: 10px;
+          font-weight: 700;
+          cursor: pointer;
+          border-radius: 4px;
+          color: $gray-400;
+          &.active {
+            background: $white;
+            color: $blue-primary;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+          }
+        }
+      }
+    }
+  }
+}
+
+// ОСНОВНОЙ КОНТЕНТ
+.main-content {
+  flex: 1;
+  background-color: $bg-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+  overflow-y: auto;
+
+  &--full-width {
+    padding: 12px;
+    align-items: stretch; 
+    overflow: hidden; 
+  }
+
+  &--title {
+    padding: 40px 0;
+  }
+}
+
+// КОНТЕЙНЕР ДЛЯ ВКЛАДОК
+.content-container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 16px;
+  transition: max-width 0.2s ease;
+
+  &--full-width {
+    max-width: 100%;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--title {
+    max-width: 1440px;
+    padding: 0;
+  }
+}
+
+// ФУТЕР
+.atm-footer {
+  flex-shrink: 0;
+  padding: 14px 24px;
+  background-color: $bg-color;
+  border-top: 1px solid $gray-100;
+  display: flex;
+  align-items: center;
+
+.icon-blue {
+    color: $blue-primary;
+  }
+  
+  .role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: $white;
+    border: 1px solid $gray-200;
+    border-radius: 20px;
+    font-size: 11px;
+    color: $gray-500;
+    b { text-transform: uppercase; color: $gray-900; }
+  }
+}

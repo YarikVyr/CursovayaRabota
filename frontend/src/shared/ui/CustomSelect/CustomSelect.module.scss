@@ -1,0 +1,154 @@
+.selectContainer {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  background: $bg-light;
+  border: 0.1rem solid $input-border;
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, background-color 0.2s;
+
+  &:hover:not(.disabled):not(.isOpen) {
+    background-color: $input-hover-bg;
+    border-color: $input-text-gray;
+  }
+
+  &.isOpen {
+    background: $bg-light;
+    border-color: $primary;
+    border-radius: 1.2rem 1.2rem 0 0;
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.6;
+  }
+
+  &.error {
+    border-color: $red;
+
+    &:hover,
+    &.isOpen {
+      border-color: $red;
+    }
+  }
+
+  &.seamless {
+    &:hover,
+    &.isOpen {
+      border-color: $input-border;
+    }
+
+    &.isOpen {
+      border-radius: 1.2rem 1.2rem 0 0;
+    }
+
+    .optionsList {
+      border-color: $input-border;
+      background: $bg-light;
+      box-shadow: none;
+    }
+  }
+}
+
+.selectHeader {
+  width: 100%;
+  height: 5rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  text-align: left;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.placeholder,
+.selectedValue {
+  font-family: $font-main;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.placeholder {
+  color: $input-text-gray;
+}
+
+.selectedValue {
+  color: $black;
+}
+
+.arrow {
+  width: 2rem;
+  height: 2rem;
+  color: $text-light;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.optionsList {
+  position: absolute;
+  left: -0.1rem;
+  right: -0.1rem;
+  top: 100%;
+  z-index: 1000;
+  width: auto;
+  max-height: 15.2rem;
+  background: $bg-light;
+  border: 0.1rem solid $primary;
+  border-top: none;
+  border-radius: 0 0 1.2rem 1.2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.6rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $input-border;
+    border-radius: 1rem;
+  }
+}
+
+.option {
+  width: 100%;
+  min-height: 5rem;
+  background-color: $bg-light;
+  border: none;
+  border-top: 0.1rem solid $input-border;
+  color: $input-text-gray;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: $font-main;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  text-align: left;
+  transition: background-color 0.1s, color 0.1s;
+
+  &:hover:not(.selected) {
+    background-color: $input-hover-bg;
+    color: $black;
+  }
+
+  &.selected {
+    background-color: $input-hover-bg;
+    color: $black;
+    font-weight: 700;
+  }
+}

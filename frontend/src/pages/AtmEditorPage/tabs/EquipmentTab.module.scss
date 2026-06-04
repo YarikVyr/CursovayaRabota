@@ -1,0 +1,252 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// БЕЛАЯ КАРТОЧКА (Основной контейнер по размерам RevisionTab)
+.whiteCard {
+  width: 144.0rem;
+  height: 90.5rem;
+  background: $white;
+  border-radius: 1.2rem;
+  border: 0.1rem solid $border-color;
+  padding: 4.0rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+// ЗАГОЛОВОК СТРАНИЦЫ (Точные размеры и шрифты из макета)
+.title {
+  position: absolute;
+  top: 4.0rem;
+  left: 4.0rem;
+  width: 35.5rem;
+  height: 2.9rem;
+  margin: 0;
+  @include font-bold;
+  font-size: 2.4rem;
+  line-height: 100%;
+  color: $black;
+  white-space: nowrap;
+}
+
+// ГЛАВНАЯ ТАБЛИЦА ОБОРУДОВАНИЯ (Границы, тени и размеры)
+.mainTable {
+  width: 136.0rem;
+  min-height: 26.0rem; 
+  max-height: 72.1rem; 
+  background: $white;
+  border: 0.1rem solid rgba(229, 231, 235, 0.5); 
+  border-radius: 1.2rem;
+  box-shadow: 0px 0.1rem 0.2rem 0px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 5.4rem; 
+  position: relative;
+}
+
+// ШАПКА ТАБЛИЦЫ
+.tableHeader {
+  height: 5.0rem;
+  background: $bg-light;
+  border-bottom: 0.1rem solid $input-border;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+// ЗАГОЛОВКИ СТОЛБЦОВ (Шрифт Inter Semi Bold 20px, точные отступы из макета)
+.headerLabel {
+  position: absolute;
+  top: 1.3rem; 
+  @include font-semibold; 
+  font-size: 2.0rem; 
+  line-height: 100%;
+  color: $black;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+// Точные координаты заголовков (20px, 581px, 1035px от левого края таблицы)
+.labelName  { left: 2.0rem;  width: 14.9rem; height: 2.4rem; }
+.labelModel { left: 58.1rem; width: 7.9rem;  height: 2.4rem; }
+.labelDate  { left: 103.5rem; width: 15.1rem; height: 2.4rem; }
+
+// КОНТЕЙНЕРЫ ДЛЯ СКРОЛЛА И КОНТЕНТА
+.scrollContainer {
+  flex-grow: 1;
+}
+
+.tableContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowsList {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1.2rem;
+}
+
+// СТРОКА ТАБЛИЦЫ (Высота 54px по макету, отступ 50px слева)
+.equipmentRow {
+  position: relative;
+  width: 100%;
+  height: 5.4rem;
+  margin-top: 0.8rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  // Интеграция стилей твоего UI-инпута под размеры таблицы оборудования
+  [class*="inputField"] {
+    border-color: $input-border;
+    box-shadow: none;
+    background: $bg-light;
+    height: 5.0rem !important;
+    border-radius: 1.2rem;
+    font-size: 1.6rem;
+  }
+
+  // Эффект наведения на всю строку (как в RevisionTab)
+  &:hover {
+    background-color: $input-hover-bg;
+    
+    // Плавное появление крестика при ховере на строку
+    .btnDelete {
+      opacity: 1;
+    }
+  }
+}
+
+.rowContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 1.0rem; // Корректировка под отступ 50px от края таблицы (50px left - 40px width разница инпута)
+}
+
+// ВЕРТИКАЛЬНЫЕ РАЗДЕЛИТЕЛИ МЕЖДУ ПОЛЯМИ (Ширина 1px, цвет #BABABA)
+.separator {
+  width: 0.1rem;
+  height: 5.4rem;
+  background: $separator-bg; 
+  margin: 0 1.0rem; // Отступы по 10px по бокам от разделителя
+  flex-shrink: 0;
+}
+
+// ШИРИНА ПОЛЕЙ ВВОДА (Точные размеры из макета: 544px, 430px, 270px)
+.nameInput  { flex-shrink: 0; width: 54.4rem; }
+.modelInput { flex-shrink: 0; width: 43.0rem; }
+.dateInput  { flex-shrink: 0; width: 27.0rem; }
+
+// КНОПКА КРЕСТИКА УДАЛЕНИЯ
+.deleteBtn {
+  position: absolute;
+  right: 3.0rem;            
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  color: $black !important; 
+  width: 2.0rem;        
+  height: 2.0rem;        
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  opacity: 1 !important;    
+
+  transition: color 0.2s ease; 
+
+  &:hover { 
+    color: $red !important; 
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ПОДВАЛ ТАБЛИЦЫ С КНОПКОЙ ДОБАВЛЕНИЯ
+.tableFooter {
+  height: 8.4rem;
+  background: $bg-light;
+  border-top: 0.1rem solid $input-border;
+  display: flex;
+  align-items: center;
+  justify-content: center; // Центрирование кнопки добавления по горизонтали
+  flex-shrink: 0;
+  position: relative;
+  z-index: 5;
+}
+
+// КНОПКА ДОБАВЛЕНИЯ ОБОРУДОВАНИЯ (Ширина 281px, высота 58px, цвет #135AA7)
+.btnAdd {
+  --btn-width: 28.1rem !important;
+  --btn-height: 5.8rem !important;
+  --btn-radius: 1.2rem !important;
+  @include font-semibold;
+  font-size: 2.0rem !important;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover {
+    background-color: $primary-hover !important;
+  }
+}
+
+// КНОПКА ПРЕДПРОСМОТРА В САМОМ НИЗУ СТРАНИЦЫ (Позиционирование как в RevisionTab)
+.previewWrapper {
+  position: absolute;
+  bottom: 2.0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.btnPreview {
+  --btn-width: 37.5rem !important;
+  --btn-height: 5.0rem !important;
+  --btn-radius: 1.2rem !important;
+  @include font-medium;
+  font-size: 1.6rem;
+  background: $primary !important;
+  color: $white !important;
+
+  &:hover {
+    background-color: $primary-hover !important;
+  }
+}
+
+// АНИМАЦИЯ ПЛАВНОГО ПОЯВЛЕНИЯ
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tableInnerInput {
+  width: 100% !important;
+  height: 5.0rem !important;
+}

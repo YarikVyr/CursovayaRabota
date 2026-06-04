@@ -1,0 +1,75 @@
+  // Глобальные переменные проекта
+
+  $white:#ffffff;
+  $black:#000000;
+  
+  $red:#DC2345;
+  $dark-red:#810B0C;
+  $green:#528D06;
+  $dark-green:#225F02;
+  $orange:#f59e0b;
+
+  $status-draft: #7B7C81; 
+  $status-process: #F4DE66;
+  $status-review: #DD6B07;
+
+  $primary:#135AA7;
+  $primary-hover:#163B6C;
+  $primary-shadow: #1D4ED8;
+
+  $text-dark:#1f2937;
+  $text-gray:#7E7E7E; 
+  $text-muted:#64748b; 
+  $text-light:#6b7280;
+
+  $bg-main:#f8f9fa; 
+  $bg-light:#f9fafb;
+  $bg-create-field:#E2E2E2;
+  $bg-switcher:#D6D6D8;
+  $bg-header:#DBDBDB;
+  $bg-title:#9CB5C1;
+  $bg-scrollbar:#BEBEBE;
+  $bg-scrollbar-thumb:#828282;
+
+  $button-switcher:#CDCBCB;
+
+  $border-color:#F3F4F6; 
+  $border-color-blue:#1E3A8A;
+  $border-dashed: #5B5B5B;
+  $border-switcher:#878787;
+  $border-select:#99999A;
+  $border-button-switcher:#C5C5C5;
+  $border-scrollbar:#D8D8D8;
+
+  $separator-bg:#BABABA;
+
+  $hover-blue:#eff6ff;
+  $hover-red:#fef2f2;
+  $hover-green:#ecfdf5; 
+  $hover-grey: #C9CACA;
+  $hover-create-field:#C8C8C8;
+
+  $input-bg: #F9FAFB; 
+  $input-border: #E5E7EB;
+  $input-text-gray: #9CA3AF;
+  $input-hover-bg: #E3E3E3;
+
+  $transition:all 0.2s ease-in-out;
+  $transition-fast: all 0.1s ease-in-out;
+
+  $font-main: 'Inter', sans-serif; 
+
+  @mixin font-bold {
+    font-family: $font-main; 
+    font-weight: 700; 
+  }
+
+  @mixin font-semibold {
+    font-family: $font-main;
+    font-weight: 600;
+  }
+
+  @mixin font-medium {
+    font-family: $font-main;
+    font-weight: 500;
+  }

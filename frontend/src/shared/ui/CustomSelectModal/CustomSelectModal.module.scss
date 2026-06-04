@@ -1,0 +1,172 @@
+// Стили для выпадающего списка для модалок создания проектов и АТМ
+
+.selectContainer {
+  width: 100%;
+  position: relative; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; 
+  font-family: $font-main;
+  background-color: $input-bg;    
+  border: 0.1rem solid $input-border; 
+  border-radius: 1.2rem;
+
+  &:hover:not(.disabled):not(.isOpen) {
+    background-color: $input-hover-bg; 
+    border-color: $input-text-gray;   
+  }  
+
+  &.isOpen {
+    border: 0.2rem solid $primary; 
+    border-radius: 1.2rem 1.2rem 0 0;
+    border-bottom-color: transparent;
+    margin: -0.1rem -0.1rem 0 -0.1rem; 
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+
+    .optionsList {
+      left: -0.2rem;   
+      right: -0.2rem;
+      border-left: 0.2rem solid $primary;
+      border-right: 0.2rem solid $primary;
+      border-bottom: 0.2rem solid $primary;
+      border-radius: 0 0 1.2rem 1.2rem;
+    }
+  }
+
+  .selectHeader {
+    height: 5.0rem; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    
+    .placeholder {
+      font-size: 1.6rem;
+      color: $input-text-gray;
+      @include font-medium;
+    }
+
+    .selectedValue {
+      font-size: 1.6rem;
+      color: $black;
+      @include font-medium; 
+    }
+    
+    .arrow {
+      width: 2.0rem;
+      height: 2.0rem;
+      color: $input-text-gray;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .optionsList {
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; 
+    position: absolute;
+    top: 100%; 
+    box-sizing: border-box;
+    max-height: 20.0rem; 
+    overflow-y: auto;
+    background-color: $input-bg; 
+    overflow-x: hidden;
+    border-top: 0.1rem solid $input-border;
+
+    &:empty {
+      min-height: 4.6rem; 
+      background-color: $input-bg;
+      pointer-events: none; 
+    }
+
+    &::-webkit-scrollbar { width: 0.6rem; }
+    &::-webkit-scrollbar-thumb { background: $input-border; border-radius: 1.0rem; }
+  }
+
+  .option {
+    min-height: 4.6rem; 
+    display: flex;
+    align-items: center; 
+    padding: 0 1.5rem;
+    font-size: 1.6rem;
+    color: $input-text-gray; 
+    cursor: pointer;
+    background-color: $input-bg; 
+    @include font-medium;
+    position: relative;
+    box-sizing: border-box;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-bottom: 0.1rem solid $input-border;
+      pointer-events: none;
+    }
+
+    &:last-child::before {
+      border-bottom: none;
+    }
+
+    &.selected {
+      color: $black;
+    }
+
+    &:hover, &.selected {
+      background-color: $input-hover-bg;
+      z-index: 5;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -0.1rem;
+        left: 0;
+        right: 0;
+        bottom: -0.1rem;
+        border-top: 0.1rem solid $input-text-gray;   
+        border-bottom: 0.1rem solid $input-text-gray; 
+        pointer-events: none;
+        box-sizing: border-box;
+        z-index: 6;
+      }
+    }
+
+    &:last-child {
+      &:hover::after, &.selected::after {
+        bottom: 0;
+      }
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    
+    .selectHeader { 
+      pointer-events: none; 
+    }
+  }
+
+  &:global(.hasError) {
+    border: 0.1rem solid $red;
+    box-shadow: 0 0 0 0.1rem $red;
+    opacity: 1; 
+
+    &:hover:not(.disabled) {
+      border-color: $red;
+    }
+
+    &.disabled {
+      border-color: $red;
+      box-shadow: 0 0 0 0.1rem $red;
+      opacity: 1; 
+    }
+  }
+}

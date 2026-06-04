@@ -1,0 +1,226 @@
+.card {
+  width: 40rem;
+  min-height: 28.7rem;
+  background: $white;
+  border: 1px solid $primary;
+  border-radius: 1.6rem;
+  box-shadow: 0 0.1rem 0.2rem rgba($black, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  position: relative;
+  transition: $transition;
+
+  &:hover {
+    .cardActions {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.cardActive {
+      box-shadow: 0 0 0 0.2rem $primary-shadow;
+    }
+  }
+
+  &.cardDeleted {
+    .cardTitle,
+    .cardInfo,
+    .miniStatsContainer,
+    .recentBadge {
+      opacity: 0.5;
+    }
+  }
+}
+
+.cardRecent {
+  min-height: 31.7rem;
+}
+
+.cardActions {
+  position: absolute;
+  top: 3.5rem;
+  right: 3rem;
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 10;
+}
+
+.actionBtn {
+  width: 1.8rem;
+  height: 1.8rem;
+  background: none;
+  border: none;
+  color: $black;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    display: block;
+    stroke-width: 2px;
+  }
+
+  &:hover {
+    color: $primary;
+
+    &.btnEdit {
+      color: $green;
+    }
+
+    &.btnDelete {
+      color: $red;
+    }
+  }
+}
+
+.cardTitle {
+  width: 100%;
+  margin: 0 0 0.6rem;
+  padding: 0 8rem 0.5rem 0;
+  border-bottom: 1px solid $separator-bg;
+  box-sizing: border-box;
+  color: $black;
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+
+  p {
+    color: $text-gray;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.7rem;
+    margin: 0;
+  }
+
+  span {
+    color: $black;
+    margin-left: 0.5rem;
+  }
+}
+
+.authorLine {
+  color: $primary;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.7rem;
+
+  span {
+    color: $black;
+  }
+}
+
+.miniStatsContainer {
+  margin-top: 1.5rem;
+  border-top: 1px solid $separator-bg;
+  padding-top: 1.5rem;
+}
+
+.miniStats {
+  color: $black;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.7rem;
+  text-transform: uppercase;
+
+  strong {
+    margin-left: 0.4rem;
+  }
+}
+
+.separator {
+  color: $black;
+  font-weight: 700;
+  margin: 0 0.8rem;
+}
+
+.recentBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  margin-top: 1rem;
+  color: $green;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.8rem;
+}
+
+.recentIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+}
+
+.bottomActions {
+  display: flex;
+  gap: 1rem;
+  width: 34rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.restoreBigBtn,
+.viewProjectBtn {
+  width: 34rem !important;
+}
+
+.restoreBigBtn {
+  height: 4.1rem !important;
+  border-radius: 5rem !important;
+  background-color: $green !important;
+  color: $white;
+  font-size: 1.6rem;
+  font-weight: 700;
+
+  &:hover:not(:disabled) {
+    background-color: $dark-green !important;
+  }
+}
+
+.openBtn,
+.shareBtn,
+.viewProjectBtn {
+  height: 4.1rem !important;
+  border-radius: 5rem !important;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+}
+
+.openBtn {
+  width: 14.2rem !important;
+}
+
+.shareBtn {
+  width: 18.8rem !important;
+}

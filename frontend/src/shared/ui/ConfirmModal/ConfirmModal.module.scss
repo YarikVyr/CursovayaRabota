@@ -1,0 +1,81 @@
+// Основные стили модального окна подтверждения
+
+.container {
+  width: 50.0rem;
+  min-height: 21.3rem; 
+  padding: 3.0rem 2.7rem;
+  background: $white;
+  border-radius: 2.0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+ 
+.title {
+  @include font-bold;
+  font-size: 3.2rem; 
+  color: $black;
+  margin: 0 0 2.1rem 0; 
+  line-height: 100%;
+  text-align: center;
+}
+
+.description {
+  @include font-semibold;
+  font-size: 1.8rem; 
+  color: $black;
+  margin: 0 0 2.1rem 0; 
+  line-height: 120%;
+  text-align: center;
+  max-width: 44.6rem;
+}
+
+.actions {
+  display: flex;
+  gap: 2.0rem; 
+  justify-content: center;
+  width: 100%;
+}
+
+.confirmBtn, .cancelBtn {
+  width: 15.0rem;
+  height: 5.0rem;
+  
+  border-radius: 2.0rem;
+  font-size: 1.8rem;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: $transition; 
+}
+
+// Кнопка отмены
+.cancelBtn {
+  background-color: $primary;
+  
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+}
+
+// Вариант кнопки для удаления
+.delete {
+  background-color: $red; 
+  
+  &:hover:not(:disabled) {
+    background-color: $dark-red; 
+  }
+}
+
+// Вариант кнопки для восстановления
+.restore {
+  background-color: $green; 
+  color: $white;
+
+  &:hover:not(:disabled) {
+    background-color: $dark-green; 
+  }
+}

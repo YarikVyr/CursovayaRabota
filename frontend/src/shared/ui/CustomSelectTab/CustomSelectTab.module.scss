@@ -1,0 +1,182 @@
+// Стили для выпадающего списка для страницы конструктора
+
+.selectContainer {
+  width: 100%;
+  position: relative; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; 
+  font-family: $font-main;
+  background-color: $input-bg;      
+  border: 0.1rem solid $input-border;
+  border-radius: 1.2rem;
+
+  &.hasValue {
+    background-color: $input-bg;
+    border: 0.1rem solid $input-border;
+  }
+
+  &:hover:not(.disabled):not(.isOpen) {
+    background-color: $input-bg;
+    border-color: $input-border;
+  }
+
+  .selectHeader {
+    height: 5.0rem; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 1.5rem;
+    cursor: pointer;
+    user-select: none;
+    
+    .placeholder {
+      font-size: 1.6rem;
+      color: $input-text-gray;
+      @include font-medium;
+    }
+
+    .selectedValue {
+      font-size: 1.6rem;
+      color: $black;       
+      @include font-medium; 
+    }
+    
+    .arrow {
+      transition: transform 0.2s ease; 
+      width: 2.0rem;
+      height: 2.0rem;
+      flex-shrink: 0;
+      color: $input-text-gray;
+    }
+  }
+
+  .optionsList {
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; 
+    position: absolute;
+    left: -0.1rem;   
+    right: -0.1rem;
+    top: 100%; 
+    box-sizing: border-box;
+    max-height: 20.0rem; 
+    overflow-y: auto;
+    background-color: $input-bg; 
+    border-radius: 0 0 1.2rem 1.2rem;
+    box-shadow: none;
+    overflow-x: hidden;
+    border: 0.1rem solid $input-border;
+
+    &::-webkit-scrollbar {
+      width: 0.6rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $input-border;
+      border-radius: 1.0rem;
+    }
+
+  &:empty {
+      min-height: 4.6rem; 
+      background-color: $input-bg;
+      border-top: 0.1rem solid $input-border; 
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      
+      &:hover {
+        background-color: $input-hover-bg; 
+        border-color: $input-text-gray;   
+      }
+    }
+  }
+  .option {
+    min-height: 4.6rem; 
+    display: flex;
+    align-items: center; 
+    padding: 0 1.5rem;
+    font-size: 1.6rem;
+    color: $input-text-gray; 
+    cursor: pointer;
+    background-color: $input-bg; 
+    @include font-medium;
+    position: relative;
+    box-sizing: border-box;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-left: 0.1rem solid $input-border;
+      border-right: 0.1rem solid $input-border;
+      pointer-events: none;
+    }
+
+    &::before {
+      border-bottom: 0.1rem solid $input-border;
+    }
+
+    &:first-child::before {
+      border-top: 0.1rem solid $input-border;
+    }
+
+    &:last-child::before {
+      border-radius: 0 0 1.2rem 1.2rem;
+    }
+
+    &:hover, &.selected {
+      background-color: $input-hover-bg;
+      color: $input-text-gray;
+      z-index: 5; 
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -0.1rem;
+        left: 0;
+        right: 0;
+        bottom: -0.1rem;
+        border: 0.1rem solid $input-text-gray; 
+        pointer-events: none;
+        box-sizing: border-box;
+        z-index: 6;
+      }
+    }
+
+    &:first-child {
+      &:hover::after, &.selected::after {
+        top: 0;
+      }
+    }
+
+    &:last-child {
+      &:hover::after, &.selected::after {
+        bottom: 0;
+        border-radius: 0 0 1.2rem 1.2rem;
+      }
+    }
+  }
+
+  &.isOpen {
+    border-radius: 1.2rem 1.2rem 0 0;
+    border-bottom-color: transparent; 
+
+    .arrow {
+      transform: rotate(180deg);
+    }
+
+    &:has(.optionsList:empty) {
+      border-color: $input-border;
+      background-color: $input-bg;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    .selectHeader {
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+// Основные стили пагинатора
+
+.paginationWrapper {
+  width: 11.0rem; 
+  height: 4.0rem;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;    
+  
+  margin: 0 auto; 
+}
+
+.arrowBtn {
+  width: 4.0rem;  
+  height: 4.0rem;   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: $black;   
+  cursor: pointer;
+  padding: 0;
+
+  svg {
+    width: 2.4rem;  
+    height: 2.4rem;
+    stroke-width: 0.3rem; 
+    transition: transform 0.2s;
+  }
+}
+
+.pageNumber {
+  min-width: 1.0rem;
+  height: 2.4rem;  
+  font-family: $font-main;
+  @include font-bold;
+  font-size: 2.0rem;
+  line-height: 100%;
+  color: $primary; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

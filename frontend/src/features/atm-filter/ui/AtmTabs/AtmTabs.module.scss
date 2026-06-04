@@ -1,0 +1,79 @@
+.tabsSection {
+  width: 100%;
+  margin-bottom: 4.5rem;
+}
+
+.tabsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tabBtn {
+  height: 4.1rem;
+  border: 0.2rem solid;
+  border-radius: 5rem;
+  background: $white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color);
+  font-family: $font-main;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 2.8rem;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+  &.all {
+    min-width: 8.6rem;
+    --color: #{$primary};
+  }
+
+  &.draft {
+    min-width: 15rem;
+    --color: #{$status-draft};
+  }
+
+  &.process {
+    min-width: 11.8rem;
+    --color: #{$status-process};
+  }
+
+  &.review {
+    min-width: 15rem;
+    --color: #{$status-review};
+  }
+
+  &.ready {
+    min-width: 10.9rem;
+    --color: #{$green};
+  }
+
+  &.trash {
+    min-width: 15rem;
+    margin-left: auto;
+    --color: #{$red};
+  }
+}
+
+.tabDefault {
+  background: $white;
+  border-color: var(--color);
+  color: var(--color);
+
+  &:hover {
+    background: var(--color);
+    color: $white;
+  }
+}
+
+.tabActive {
+  background: var(--color);
+  border-color: var(--color);
+  color: $white;
+  cursor: default;
+}

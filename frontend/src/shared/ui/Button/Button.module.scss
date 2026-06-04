@@ -1,0 +1,43 @@
+// Основные стили кнопки
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  width: var(--btn-width, 100%); 
+  height: var(--btn-height, 5.6rem);
+  border-radius: var(--btn-radius, 1.2rem); 
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background: $primary;
+  color: $white;
+  box-shadow: none; 
+
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}

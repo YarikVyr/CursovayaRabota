@@ -1,0 +1,17 @@
+# Зависимости
+node_modules/
+bin/
+obj/
+
+# Сборка и временные файлы
+dist/
+build/
+.vs/
+.vscode/
+.idea/
+*.user
+tmp/
+
+# Тяжелые архивы
+*.tar
+*.zip

@@ -1,0 +1,103 @@
+.pageWrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: $bg-main;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-main;
+  overflow: auto;
+  padding: 3.2rem 1.6rem;
+}
+
+.authCard {
+  width: 44.8rem;
+  background: $white;
+  border: 0.1rem solid $border-color;
+  border-radius: 2.4rem;
+  box-shadow:
+    0 1rem 1rem -0.5rem rgba($black, 0.04),
+    0 2rem 2.5rem -0.5rem rgba($black, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  padding: 3.1rem 3.2rem 2.8rem;
+}
+
+.loginCard {
+  min-height: 51.4rem;
+}
+
+.registerCard {
+  min-height: 54.1rem;
+}
+
+.cardHeader {
+  width: 100%;
+  text-align: center;
+}
+
+.logoIcon {
+  width: 7.2rem;
+  height: 7.2rem;
+  background: $primary;
+  border-radius: 1.6rem;
+  box-shadow: 0 1rem 1.5rem -0.3rem rgba($black, 0.1);
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2.3rem;
+
+  svg {
+    width: 4rem;
+    height: 4rem;
+    display: block;
+    stroke-width: 2.2;
+  }
+}
+
+.title {
+  width: 100%;
+  color: $text-dark;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.6rem;
+}
+
+.subtitle {
+  color: $text-light;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 3.3rem;
+}
+
+.cardFooter {
+  margin-top: 2.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.forgotBtn,
+.switchBtn {
+  background: none;
+  border: none;
+  color: $primary;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $primary-hover;
+    text-decoration: underline;
+  }
+}
